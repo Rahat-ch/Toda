@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "client": "npm run start --prefix client",
-    "dev": "concurrently \"npm run start\" \"npm run client\"",
+    "devserver": "nodemon server.js",
+    "dev": "concurrently \"npm run devserver\" \"npm run client\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "Rahat Chowdhury",
@@ -16,6 +17,7 @@
     "concurrently": "^5.1.0",
     "express": "^4.17.1",
     "mongoose": "^5.9.10",
+    "nodemon": "^2.0.3",
     "path": "^0.12.7"
   }
 }

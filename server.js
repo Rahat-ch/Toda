@@ -1,10 +1,14 @@
 const express = require('express');
-const app = express();
 const mongoose = require('mongoose');
+const items = require('./routes/items');
 
 mongoose.connect(
   process.env.MONGODB_URI || 'mongodb://localhost/toda'
 )
+
+const app = express();
+
+app.use('/api/v1/items', items)
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
