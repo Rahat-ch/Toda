@@ -4,7 +4,6 @@ const ItemSchema = new mongoose.Schema({
   description: {
     type: String,
     required: [true, 'Please add a description'],
-    unique: true,
     trim: true,
     maxlength: [240, 'Description cannot be more that 240 chracters'],
   },

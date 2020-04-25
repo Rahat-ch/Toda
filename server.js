@@ -1,7 +1,9 @@
 const express = require('express');
 const items = require('./routes/items');
+const auth = require('./routes/auth');
 const morgan = require('morgan');
 const colors = require('colors');
+const errorHandler = require('./middleware/error');
 const connectDB = require('./config/db');
 
 connectDB();
@@ -14,7 +16,10 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
-app.use('/api/v1/items', items)
+app.use('/api/v1/items', items);
+app.use('/api/v1/auth', auth);
+
+app.use(errorHandler);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
