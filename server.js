@@ -1,12 +1,18 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const items = require('./routes/items');
+const morgan = require('morgan');
+const colors = require('colors');
+const connectDB = require('./config/db');
 
-mongoose.connect(
-  process.env.MONGODB_URI || 'mongodb://localhost/toda'
-)
+connectDB();
 
 const app = express();
+
+app.use(express.json())
+
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
 
 app.use('/api/v1/items', items)
 
@@ -19,4 +25,10 @@ if (process.env.NODE_ENV === "production") {
 }
 
 const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+
+const server = app.listen(PORT, () => console.log(`Server started on port ${PORT}`.yellow.bold));
+
+process.on('unhandledRejection', (err, promise) => {
+  console.log(`Error: ${err.message}`.red)
+  server.close(() => process.exit(1))
+})

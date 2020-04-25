@@ -1,8 +1,22 @@
 const express = require('express');
+const { getAllItems, createItem, updateItem, deleteItem } = require('../controllers/items');
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  res.status(200).json({ success: true, msg: 'hello bruh' });
-})
+router
+  .route('/')
+  .get(getAllItems)
+
+router
+  .route('/')
+  .post(createItem)
+
+router
+  .route('/:id')
+  .put(updateItem)
+
+router
+  .route('/:id')
+  .delete(deleteItem)
 
 module.exports = router;
+
