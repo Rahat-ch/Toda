@@ -3,14 +3,22 @@ const items = require('./routes/items');
 const auth = require('./routes/auth');
 const morgan = require('morgan');
 const colors = require('colors');
+const cookieParser = require('cookie-parser');
+const mongoSanitize = require('express-mongo-sanitize');
+const helmet = require('helmet');
+const xss = require('css-clean');
+const rateLimit = require('express-rate-limit');
+const hpp = require('hpp');
 const errorHandler = require('./middleware/error');
 const connectDB = require('./config/db');
+require('dotenv').config()
 
 connectDB();
 
 const app = express();
 
-app.use(express.json())
+app.use(express.json());
+app.use(cookieParser());
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
@@ -20,6 +28,17 @@ app.use('/api/v1/items', items);
 app.use('/api/v1/auth', auth);
 
 app.use(errorHandler);
+app.use(mongoSanitize());
+app.use(helmet());
+app.use(xss());
+
+const limiter = rateLimit({
+  windowMs: 10 * 60 * 1000,
+  max: 100
+});
+
+app.use(limiter);
+app.use(hpp());
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));

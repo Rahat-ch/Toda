@@ -22,8 +22,9 @@ const ItemSchema = new mongoose.Schema({
     enum: ['daily', 'weekly'],
     required: true,
   },
-  userId: {
-    type: String,
+  user: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User',
     required: true,
   },
   createdAt: {

@@ -1,6 +1,7 @@
 const express = require('express');
 const { getAllItems, createItem, updateItem, deleteItem } = require('../controllers/items');
 const router = express.Router();
+const { protect } = require('../middleware/auth');
 
 router
   .route('/')
@@ -8,15 +9,15 @@ router
 
 router
   .route('/')
-  .post(createItem)
+  .post(protect, createItem)
 
 router
   .route('/:id')
-  .put(updateItem)
+  .put(protect, updateItem)
 
 router
   .route('/:id')
-  .delete(deleteItem)
+  .delete(protect, deleteItem)
 
 module.exports = router;
 

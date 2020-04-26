@@ -17,6 +17,7 @@ exports.getAllItems = asyncHandler(async (req, res, next) => {
 //@desc Create new Item
 //@route POST /api/v1/items
 exports.createItem = asyncHandler(async (req, res, next) => {
+  req.body.user = req.user.id;
   const item = await Item.create(req.body);
   res.status(201).json({
     success: true,
