@@ -1,0 +1,78 @@
+.authContainer {
+  width: 50%;
+  margin: 0 auto;
+  -webkit-box-shadow: 0 10px 6px -6px #777;
+       -moz-box-shadow: 0 10px 6px -6px #777;
+            box-shadow: 0 10px 6px -6px #777;
+  padding:50px;
+  border-radius: 50px;
+  background-color: #fff;
+}
+
+.authForm{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  font-family: 'Inter', sans-serif;
+}
+
+.authForm > * {
+    margin: 20px 0;
+}
+
+.authSubmit {
+  background-color: #f39f86;
+  background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%);
+  width: 40%;
+  padding: 15px;
+  border-radius: .25rem;
+  margin-top: 10px;
+  font-size: 100%;
+}
+
+.authLabel {
+  margin-top: 10px;
+  font-size: 23px;
+  display: flex;
+  flex-direction: column;
+}
+
+.authHint {
+  font-size: 15px;
+  color: #777;
+}
+
+.authInnerContainer {
+  display: flex;
+  margin-top: 25px;
+}
+
+.checkboxes{
+  width: 45%;
+  height: 45%;
+}
+
+.authToggle {
+    background:none;
+  border:none;
+  font-size:1em;
+  color:blue;
+  cursor: pointer;
+}
+
+.authToggle:focus {
+  outline-color: #757575;
+}
+
+.authInput {
+  font-size:18px;
+  padding:10px 10px 10px 5px;
+  display:block;
+  width:75%;
+  border:none;
+  border-bottom:1px solid #757575;
+}
+
+.authInput:focus {
+  outline-color: #757575;
+}

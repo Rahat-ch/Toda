@@ -1,0 +1,12 @@
+.itemDone{
+  text-decoration: line-through;
+  color: black;
+}
+
+.itemPending {
+  color: black
+}
+
+.itemContainer{
+  display: flex;
+}
