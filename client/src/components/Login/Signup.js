@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import { ReactComponent as CheckBoxes } from '../../images/checkbox.svg'
+import { ReactComponent as CheckBoxes } from '../../images/checkbox.svg';
+import { register } from '../../apiRequests/auth';
+import { useHistory } from 'react-router-dom';
 
 const Signup = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const handleSubmit = (e) => {
+  const history = useHistory();
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(name)
-    console.log(email)
-    console.log(password)
+    register(name, email, password, history)
   }
   return (
     <div className="authInnerContainer">
